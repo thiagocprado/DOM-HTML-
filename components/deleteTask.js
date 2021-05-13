@@ -1,19 +1,20 @@
+const deleteTask = (update, id) => {
 
-const DeleteButton = () => {
-    const deleteButton = document.createElement("button");
+    const index = id;
+    const createdTasks = JSON.parse(localStorage.getItem('tasks'));
 
-    deleteButton.innerText = "deletar";
-    deleteButton.addEventListener("click", deleteTask);
+    createdTasks.splice(index, 1);
 
-    return deleteButton;
+    localStorage.setItem("tasks", JSON.stringify(createdTasks));
+
+    update();
 }
 
-const deleteTask = (event) => {
-    const deleteButton = event.target;
+const DeleteButton = (update, id) => {
+    const deleteButton = document.createElement('button');
 
-    const removeTask = deleteButton.parentElement;
-
-    removeTask.remove();
+    deleteButton.innerText = 'deletar';
+    deleteButton.addEventListener('click', () => deleteTask(update, id));
 
     return deleteButton;
 }
